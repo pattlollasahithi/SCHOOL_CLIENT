@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import API_BASE_URL from '../config/api';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
+  const { login } = useAuth();
   const [role, setRole] = useState(null);
   const [isRegistering, setIsRegistering] = useState(false);
 
@@ -37,23 +39,20 @@ const Login = () => {
         setPassword('');
         setConfirmPassword('');
       } else {
-        const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
+        const data = await login(
           schoolId,
           password,
-          role: role === 'staff' ? 'admin' : 'student'
-        });
-
-        const data = res.data;
-        localStorage.setItem('userInfo', JSON.stringify(data));
+          role === 'staff' ? 'admin' : 'student'
+        );
 
         if (data.role === 'admin') {
-          window.location.href = '/admin';
+          window.location.href = '/admin/dashboard';
         } else {
           window.location.href = '/student';
         }
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'An error occurred. Please try again.');
+      setError(err.response?.data?.message || err || 'An error occurred. Please try again.');
     }
   };
 

@@ -4,21 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import API_BASE_URL from '../config/api';
 
-/* ─── Shared glass style objects ─────────────────── */
-const glassLight = {
-  background: 'rgba(255, 248, 243, 0.82)',
-  backdropFilter: 'blur(18px)',
-  WebkitBackdropFilter: 'blur(18px)',
-  border: '1px solid rgba(255, 255, 255, 0.38)',
-  boxShadow: '0 8px 32px rgba(61, 6, 16, 0.14)',
-};
-
-const glassDark = {
-  background: 'rgba(48, 4, 12, 0.66)',
-  backdropFilter: 'blur(22px)',
-  WebkitBackdropFilter: 'blur(22px)',
-  border: '1px solid rgba(232, 90, 27, 0.16)',
-};
 
 /* ─── Accent bar under heading ───────────────────── */
 const AccentBar = () => (
@@ -142,8 +127,7 @@ const Home = () => {
             {stats.map((stat, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1, duration: 0.5 }} viewport={{ once: true }}
-                className="text-center p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1"
-                style={glassLight}
+                className="text-center p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 glass-light"
               >
                 <div className="text-2xl mb-2">{stat.icon}</div>
                 <div className="text-2xl font-black mb-1"
@@ -176,8 +160,7 @@ const Home = () => {
             {features.map((f, i) => (
               <motion.div key={i}
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.15, duration: 0.6 }} viewport={{ once: true }}
-                className="group p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 cursor-default"
-                style={glassLight}
+                className="group p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 cursor-default glass-light"
               >
                 <div className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-5 transition-transform duration-300 group-hover:scale-110"
                   style={{ background: 'linear-gradient(135deg, rgba(232,90,27,0.12), rgba(249,115,22,0.08))' }}
@@ -214,8 +197,7 @@ const Home = () => {
               <motion.div key={ach._id}
                 initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.1, duration: 0.5 }} viewport={{ once: true }}
                 onClick={() => setSelectedPhoto({ ...ach, photo: ach.image })}
-                className="relative p-7 rounded-3xl overflow-hidden group hover:shadow-xl transition-all duration-300 cursor-pointer"
-                style={glassLight}
+                className="relative p-7 rounded-3xl overflow-hidden group hover:shadow-xl transition-all duration-300 cursor-pointer glass-light"
               >
                 <div className="absolute top-0 right-0 w-24 h-24 -mr-8 -mt-8 rounded-full opacity-10 group-hover:scale-150 transition-transform duration-500" style={{ background: '#7B0D1E' }} />
                 <div className="text-3xl mb-5">🏆</div>
@@ -311,8 +293,8 @@ const Home = () => {
             {announcements.length > 0 ? announcements.map((ann, i) => (
               <motion.div key={ann._id}
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1, duration: 0.5 }} viewport={{ once: true }}
-                className="rounded-2xl p-6 border-l-4 transition-all duration-300 hover:-translate-y-1 cursor-default"
-                style={{ ...glassLight, borderLeftColor: '#E85A1B' }}
+                className="rounded-2xl p-6 border-l-4 transition-all duration-300 hover:-translate-y-1 cursor-default glass-light"
+                style={{ borderLeftColor: '#E85A1B' }}
               >
                 <span className="text-xs font-bold mb-3 block tracking-wider uppercase" style={{ color: '#E85A1B' }}>
                   📅 {new Date(ann.date).toLocaleDateString()}
@@ -344,8 +326,7 @@ const Home = () => {
       <section className="py-16 mx-4 sm:mx-6 lg:mx-auto max-w-5xl mb-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}
-          className="text-center py-14 px-8 rounded-3xl relative overflow-hidden"
-          style={glassDark}
+          className="text-center py-14 px-8 rounded-3xl relative overflow-hidden glass-dark"
         >
           {/* Accent glow */}
           <div className="absolute inset-0 opacity-[0.08] pointer-events-none"

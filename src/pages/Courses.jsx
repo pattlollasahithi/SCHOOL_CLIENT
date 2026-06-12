@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Courses = () => {
   const courses = [
@@ -135,13 +136,13 @@ const Courses = () => {
                   ))}
                 </ul>
 
-                <a
-                  href="/admissions"
+                <Link
+                  to="/admissions"
                   className="inline-flex items-center gap-1 text-sm font-bold transition-colors duration-200"
                   style={{ color: '#E85A1B' }}
                 >
                   Learn more →
-                </a>
+                </Link>
               </div>
             </motion.div>
           ))}
@@ -166,13 +167,13 @@ const Courses = () => {
           <p className="mb-8" style={{ color: 'rgba(255,255,255,0.8)' }}>
             Our admissions team is ready to guide you through the enrollment process.
           </p>
-          <a
-            href="/admissions"
+          <Link
+            to="/admissions"
             className="inline-block px-8 py-3 font-bold rounded-full transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
             style={{ background: 'white', color: '#7B0D1E' }}
           >
             Apply for Admission →
-          </a>
+          </Link>
         </motion.div>
       </div>
     </div>
