@@ -6,9 +6,14 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const admin = localStorage.getItem('adminInfo');
-    const student = localStorage.getItem('userInfo');
-    return admin ? JSON.parse(admin) : (student ? JSON.parse(student) : null);
+    try {
+      const admin = localStorage.getItem('adminInfo');
+      const student = localStorage.getItem('userInfo');
+      return admin ? JSON.parse(admin) : (student ? JSON.parse(student) : null);
+    } catch (e) {
+      console.error('Failed to parse user info from localStorage:', e);
+      return null;
+    }
   });
 
   const login = async (schoolId, password, role = 'admin') => {
