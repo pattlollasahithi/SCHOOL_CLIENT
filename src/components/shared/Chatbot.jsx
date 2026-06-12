@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import API_BASE_URL from '../config/api';
+import API_BASE_URL from '@/config/api';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);

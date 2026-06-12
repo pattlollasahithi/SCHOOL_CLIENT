@@ -1,27 +1,27 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
-import SplashScreen from './components/SplashScreen';
+import SplashScreen from '@/components/shared/SplashScreen';
 
-import ScrollToTop from './components/ScrollToTop';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Courses from './pages/Courses';
-import Admissions from './pages/Admissions';
-import Contact from './pages/Contact';
-import Gallery from './pages/Gallery';
-import NoticeBoard from './pages/NoticeBoard';
-import Login from './pages/Login';
-import ChatBot from './components/ChatBot';
+import ScrollToTop from '@/components/shared/ScrollToTop';
+import Navbar from '@/components/shared/Navbar';
+import Footer from '@/components/shared/Footer';
+import Home from '@/pages/Home';
+import About from '@/pages/About';
+import Courses from '@/pages/Courses';
+import Admissions from '@/pages/Admissions';
+import Contact from '@/pages/Contact';
+import Gallery from '@/pages/Gallery';
+import NoticeBoard from '@/pages/NoticeBoard';
+import Login from '@/pages/Login';
+import Chatbot from '@/components/shared/Chatbot';
 
-import { AuthProvider } from './context/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
-import AdminLogin from './pages/AdminLogin';
-import AdminDashboard from './pages/AdminDashboard';
-import DashboardHome from './pages/DashboardHome';
-import AchievementManagement from './pages/AchievementManagement';
-import NoticeManagement from './pages/NoticeManagement';
-import AnnouncementManagement from './pages/AnnouncementManagement';
+import { AuthProvider } from '@/context/AuthContext';
+import ProtectedRoute from '@/components/shared/ProtectedRoute';
+import AdminLogin from '@/pages/AdminLogin';
+import AdminDashboard from '@/pages/AdminDashboard';
+import DashboardHome from '@/pages/DashboardHome';
+import AchievementManagement from '@/pages/AchievementManagement';
+import NoticeManagement from '@/pages/NoticeManagement';
+import AnnouncementManagement from '@/pages/AnnouncementManagement';
 import { Toaster } from 'react-hot-toast';
 
 /* Layout wrapper for public pages (Navbar + Footer + ChatBot) */
@@ -30,7 +30,7 @@ const PublicLayout = ({ children }) => (
     <Navbar />
     <main className="flex-grow">{children}</main>
     <Footer />
-    <ChatBot />
+    <Chatbot />
   </>
 );
 
