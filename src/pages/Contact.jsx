@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import { motion } from 'framer-motion';
 
 const inputClass = `
@@ -24,7 +25,7 @@ const Contact = () => {
     setLoading(true);
     setError('');
     try {
-      await axios.post('http://localhost:5000/api/contact/submit', formData);
+      await axios.post(`${API_BASE_URL}/api/contact/submit`, formData);
       setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);

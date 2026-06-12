@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import { toast } from 'react-hot-toast';
 import { Plus, Search, Edit2, Trash2, X, FileText, Calendar, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,7 +22,7 @@ const NoticeManagement = () => {
 
   const fetchNotices = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/notices');
+      const { data } = await axios.get(`${API_BASE_URL}/api/notices`);
       setNotices(data);
     } catch (err) {
       toast.error('Failed to fetch notices');
@@ -50,10 +51,10 @@ const NoticeManagement = () => {
 
     try {
       if (editId) {
-        await axios.put(`http://localhost:5000/api/notices/${editId}`, data, config);
+        await axios.put(`${API_BASE_URL}/api/notices/${editId}`, data, config);
         toast.success('Notice updated!');
       } else {
-        await axios.post('http://localhost:5000/api/notices', data, config);
+        await axios.post(`${API_BASE_URL}/api/notices`, data, config);
         toast.success('Notice added!');
       }
       setIsModalOpen(false);
@@ -69,7 +70,7 @@ const NoticeManagement = () => {
   const handleDelete = async () => {
     const adminInfo = JSON.parse(localStorage.getItem('adminInfo'));
     try {
-      await axios.delete(`http://localhost:5000/api/notices/${deleteId}`, {
+      await axios.delete(`${API_BASE_URL}/api/notices/${deleteId}`, {
         headers: { Authorization: `Bearer ${adminInfo.token}` }
       });
       toast.success('Notice removed');

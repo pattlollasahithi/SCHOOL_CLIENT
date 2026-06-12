@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import { toast } from 'react-hot-toast';
 import {
   Plus,
@@ -33,7 +34,7 @@ const AchievementManagement = () => {
 
   const fetchAchievements = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/achievements');
+      const { data } = await axios.get(`${API_BASE_URL}/api/achievements`);
       setAchievements(data);
     } catch (err) {
       toast.error('Failed to fetch achievements');
@@ -81,10 +82,10 @@ const AchievementManagement = () => {
 
     try {
       if (editId) {
-        await axios.put(`http://localhost:5000/api/achievements/${editId}`, data, config);
+        await axios.put(`${API_BASE_URL}/api/achievements/${editId}`, data, config);
         toast.success('Achievement updated!');
       } else {
-        await axios.post('http://localhost:5000/api/achievements', data, config);
+        await axios.post(`${API_BASE_URL}/api/achievements`, data, config);
         toast.success('Achievement added!');
       }
       setIsModalOpen(false);
@@ -101,7 +102,7 @@ const AchievementManagement = () => {
       headers: { Authorization: `Bearer ${adminInfo.token}` }
     };
     try {
-      await axios.delete(`http://localhost:5000/api/achievements/${deleteId}`, config);
+      await axios.delete(`${API_BASE_URL}/api/achievements/${deleteId}`, config);
       toast.success('Deleted successfully');
       setDeleteId(null);
       setIsDeleting(false);

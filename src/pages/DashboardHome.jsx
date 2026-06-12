@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import { Trophy, Bell, Megaphone, Users, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -14,9 +15,9 @@ const DashboardHome = () => {
     const fetchStats = async () => {
       try {
         const [ach, not, ann] = await Promise.all([
-          axios.get('http://localhost:5000/api/achievements'),
-          axios.get('http://localhost:5000/api/notices'),
-          axios.get('http://localhost:5000/api/announcements'),
+          axios.get(`${API_BASE_URL}/api/achievements`),
+          axios.get(`${API_BASE_URL}/api/notices`),
+          axios.get(`${API_BASE_URL}/api/announcements`),
         ]);
         setStats({
           achievements: ach.data.length,

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import { FileText, Download, Calendar, ExternalLink, Search } from 'lucide-react';
 
 const NoticeBoard = () => {
@@ -11,7 +12,7 @@ const NoticeBoard = () => {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/notices');
+        const { data } = await axios.get(`${API_BASE_URL}/api/notices`);
         setNotices(data);
       } catch (err) {
         console.error("Error fetching notices:", err);

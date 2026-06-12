@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import { toast } from 'react-hot-toast';
 import { Plus, Search, Edit2, Trash2, X, Megaphone, Calendar } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -20,7 +21,7 @@ const AnnouncementManagement = () => {
 
   const fetchAnnouncements = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/announcements');
+      const { data } = await axios.get(`${API_BASE_URL}/api/announcements`);
       setAnnouncements(data);
     } catch (err) {
       toast.error('Failed to fetch announcements');
@@ -40,10 +41,10 @@ const AnnouncementManagement = () => {
 
     try {
       if (editId) {
-        await axios.put(`http://localhost:5000/api/announcements/${editId}`, formData, config);
+        await axios.put(`${API_BASE_URL}/api/announcements/${editId}`, formData, config);
         toast.success('Announcement updated!');
       } else {
-        await axios.post('http://localhost:5000/api/announcements', formData, config);
+        await axios.post(`${API_BASE_URL}/api/announcements`, formData, config);
         toast.success('Announcement posted!');
       }
       setIsModalOpen(false);
@@ -58,7 +59,7 @@ const AnnouncementManagement = () => {
   const handleDelete = async () => {
     const adminInfo = JSON.parse(localStorage.getItem('adminInfo'));
     try {
-      await axios.delete(`http://localhost:5000/api/announcements/${deleteId}`, {
+      await axios.delete(`${API_BASE_URL}/api/announcements/${deleteId}`, {
         headers: { Authorization: `Bearer ${adminInfo.token}` }
       });
       toast.success('Deleted');

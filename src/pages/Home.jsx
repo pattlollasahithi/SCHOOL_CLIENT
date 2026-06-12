@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 
 /* ─── Shared glass style objects ─────────────────── */
 const glassLight = {
@@ -47,8 +48,8 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const [achRes, annRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/achievements'),
-          axios.get('http://localhost:5000/api/announcements')
+          axios.get(`${API_BASE_URL}/api/achievements`),
+          axios.get(`${API_BASE_URL}/api/announcements`)
         ]);
         setAchievements(achRes.data);
         setAnnouncements(annRes.data);

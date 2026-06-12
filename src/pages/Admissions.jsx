@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 
 const inputClass = `
   w-full px-4 py-3 rounded-xl border text-sm transition-all duration-200
@@ -29,7 +30,7 @@ const Admissions = () => {
     setError('');
 
     try {
-      await axios.post('http://localhost:5000/api/admissions/submit', formData);
+      await axios.post(`${API_BASE_URL}/api/admissions/submit`, formData);
       setSubmitted(true);
       setFormData({ studentName: '', parentName: '', email: '', phone: '', address: '', gender: '', grade: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);
